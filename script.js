@@ -1,13 +1,16 @@
-// Espera o documento carregar completamente
-document.addEventListener('DOMContentLoaded', () => {
+// Espera o documento HTML ser completamente carregado
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // 1. Encontra o botão pelo seu ID
+    const botao = document.getElementById('meuBotao');
 
-    // Seleciona o botão pelo ID que demos a ele no HTML
-    const botao = document.getElementById('botao-contato');
-
-    // Adiciona um "ouvinte" de clique no botão
-    botao.addEventListener('click', () => {
-        // Ação que acontece ao clicar
-        alert('Meu email é: seu-email@exemplo.com');
+    // 2. Adiciona um "ouvidor" de evento de clique
+    // Isso diz ao navegador: "Ei, quando este botão for clicado, faça isso:"
+    botao.addEventListener('click', function() {
+        
+        // 3. A ação que acontece ao clicar
+        alert('Olá, Bruno! O JavaScript está funcionando! 🎉');
+        
     });
 
 });
