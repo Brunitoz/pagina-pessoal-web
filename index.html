@@ -1,514 +1,641 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="h-full">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bruno Gonçalves - Página Pessoal</title>
   <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
         body {
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100%;
         }
-
-        html {
-            height: 100%;
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+        
+        .card-hover {
+            transition: all 0.3s ease;
         }
-
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 3rem;
-        }
-
-        .profile-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 5px solid white;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            object-fit: cover;
-        }
-
-        .profile-info h1 {
-            font-size: 3rem;
-            margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .profile-info p {
-            font-size: 1.2rem;
-            margin: 0.5rem 0;
-            opacity: 0.9;
-        }
-
-        .content {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 2rem;
-        }
-
-        .section {
-            margin-bottom: 3rem;
-        }
-
-        .section h2 {
-            color: #667eea;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .section p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #333;
-            margin-bottom: 1rem;
-        }
-
-        .gallery {
-            margin-top: 2rem;
-        }
-
-        .gallery h3 {
-            color: #667eea;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .photo-item {
-            aspect-ratio: 1;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease;
-        }
-
-        .photo-item:hover {
+        
+        .card-hover:hover {
             transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
-
-        .photo-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
+        
         .photo-placeholder {
-            width: 100%;
-            height: 100%;
+            background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+            border: 2px dashed #9ca3af;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .photo-placeholder span {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .gallery-message {
-            text-align: center;
-            font-style: italic;
-            color: #667eea;
-            font-weight: 500;
-            margin-top: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .info-item {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .info-item:hover {
-            transform: scale(1.05);
-        }
-
-        .info-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .hobbies-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .hobby-card {
-            background: #f8f9fa;
-            padding: 1.5rem;
+            min-height: 200px;
             border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
-
-        .hobby-card:hover {
-            transform: translateY(-3px);
+        
+        .photo-placeholder:hover {
+            border-color: #3b82f6;
+            background: linear-gradient(45deg, #eff6ff, #dbeafe);
         }
-
-        .hobby-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        
+        .section-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        .hobby-card h4 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
         }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            .profile-info h1 {
-                font-size: 2rem;
-            }
-
-            .photo-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-heart {
+            animation: pulseHeart 2s infinite;
+        }
+        
+        @keyframes pulseHeart {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
- <body>
-  <div class="container">
-   <header class="header">
-    <div class="profile-section"><img src="https://drive.google.com/uc?export=view&amp;id=1V4VUa76iyNPthP4Hz3N-FaiD3Y3Y8QRf" alt="Bruno Gonçalves" class="profile-image" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNzUiIGN5PSI3NSIgcj0iNzUiIGZpbGw9IiM2NjdlZWEiLz48dGV4dCB4PSI3NSIgeT0iODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0MCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkI8L3RleHQ+PC9zdmc+';">
-     <div class="profile-info">
-      <h1>Bruno Gonçalves</h1>
-      <p>🎓 16 anos | 💼 Estudante | 📍 Araucária, PR</p>
-      <p>💕 Namorando Maria Luiza | 👨‍👩‍👧‍👦 Família de 4 sobrinhos</p>
-     </div>
+ <body class="h-full"><!-- Esteira de Fotos -->
+  <section class="bg-gray-100 py-8 overflow-hidden">
+   <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">📸 Minhas Fotos</h2>
+    <div class="photo-carousel-container relative">
+     <div id="photo-carousel" class="flex gap-4 overflow-x-auto pb-4 scroll-smooth"><!-- Foto placeholder 1 -->
+      <div class="photo-slot flex-shrink-0 w-48 h-48 bg-white rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center hover:border-blue-400 transition-colors cursor-pointer">
+       <div class="text-center text-gray-500">
+        <div class="text-3xl mb-2">
+         📷
+        </div>
+        <p class="text-sm">Adicionar foto</p>
+       </div>
+      </div><!-- Foto placeholder 2 -->
+      <div class="photo-slot flex-shrink-0 w-48 h-48 bg-white rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center hover:border-blue-400 transition-colors cursor-pointer">
+       <div class="text-center text-gray-500">
+        <div class="text-3xl mb-2">
+         📷
+        </div>
+        <p class="text-sm">Adicionar foto</p>
+       </div>
+      </div><!-- Foto placeholder 3 -->
+      <div class="photo-slot flex-shrink-0 w-48 h-48 bg-white rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center hover:border-blue-400 transition-colors cursor-pointer">
+       <div class="text-center text-gray-500">
+        <div class="text-3xl mb-2">
+         📷
+        </div>
+        <p class="text-sm">Adicionar foto</p>
+       </div>
+      </div><!-- Foto placeholder 4 -->
+      <div class="photo-slot flex-shrink-0 w-48 h-48 bg-white rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center hover:border-blue-400 transition-colors cursor-pointer">
+       <div class="text-center text-gray-500">
+        <div class="text-3xl mb-2">
+         📷
+        </div>
+        <p class="text-sm">Adicionar foto</p>
+       </div>
+      </div><!-- Foto placeholder 5 -->
+      <div class="photo-slot flex-shrink-0 w-48 h-48 bg-white rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center hover:border-blue-400 transition-colors cursor-pointer">
+       <div class="text-center text-gray-500">
+        <div class="text-3xl mb-2">
+         📷
+        </div>
+        <p class="text-sm">Adicionar foto</p>
+       </div>
+      </div><!-- Foto placeholder 6 -->
+      <div class="photo-slot flex-shrink-0 w-48 h-48 bg-white rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center hover:border-blue-400 transition-colors cursor-pointer">
+       <div class="text-center text-gray-500">
+        <div class="text-3xl mb-2">
+         📷
+        </div>
+        <p class="text-sm">Adicionar foto</p>
+       </div>
+      </div><!-- Foto placeholder 7 -->
+      <div class="photo-slot flex-shrink-0 w-48 h-48 bg-white rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center hover:border-blue-400 transition-colors cursor-pointer">
+       <div class="text-center text-gray-500">
+        <div class="text-3xl mb-2">
+         📷
+        </div>
+        <p class="text-sm">Adicionar foto</p>
+       </div>
+      </div><!-- Foto placeholder 8 -->
+      <div class="photo-slot flex-shrink-0 w-48 h-48 bg-white rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center hover:border-blue-400 transition-colors cursor-pointer">
+       <div class="text-center text-gray-500">
+        <div class="text-3xl mb-2">
+         📷
+        </div>
+        <p class="text-sm">Adicionar foto</p>
+       </div>
+      </div>
+     </div><!-- Botões de navegação --> <button onclick="scrollCarousel('left')" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-700 rounded-full p-2 shadow-lg transition-all">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg></button> <button onclick="scrollCarousel('right')" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-700 rounded-full p-2 shadow-lg transition-all">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg></button>
     </div>
-   </header>
-   <main class="content">
-    <div class="section">
-     <h2>😊 Sobre Mim</h2>
-     <p>Olá! Sou o Bruno, tenho 16 anos e moro em Araucária, Paraná. Sou estudante e sempre busco crescer pessoalmente e academicamente.</p>
-     <p>Sou uma pessoa de família, apaixonado pela minha namorada Maria Luiza e muito próximo dos meus 4 sobrinhos: Laura, Samuel, Gabriel e Miguel. Eles são uma parte muito importante da minha vida!</p>
-     <p>Gosto de futebol, UFC, e valorizo muito os momentos com a família e amigos. Acredito que a vida é feita de pequenos momentos especiais e sempre procuro aproveitar cada um deles.</p>
-     <div class="gallery">
-      <h3>📸 Minha Galeria</h3>
-      <div class="photo-grid">
-       <div class="photo-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1-Z1H1oyZGiF1SdDMTXCKqwsRgd8JqQY5" alt="Momento especial" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>😊</span><p>Momento especial</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=15Rp736dM4yhUqjmsjUKwMygml6PXeuLH" alt="Dia a dia" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>📸</span><p>Dia a dia</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1oEIBf21iPyZkZc3FaI-W8rwoDuEdMIBe" alt="Sorriso genuíno" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>😄</span><p>Sorriso genuíno</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=107BoI3oE8Co-gCa1tt6MOZEkS41n9188" alt="Estilo único" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>✨</span><p>Estilo único</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1dVaOHVgZ9BQya7V9QfoFTOAjJMmFXoiE" alt="Personalidade" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🌟</span><p>Personalidade</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1wtGE4MPUV6J2YNh-dpm4X52qj9kwgsyd" alt="Autenticidade" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>💫</span><p>Autenticidade</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1V4VUa76iyNPthP4Hz3N-FaiD3Y3Y8QRf" alt="Perfil principal" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>👤</span><p>Perfil</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1JZXTLW710UsG_9ywIJ9Mh_WbosIXHxos" alt="Sorriso radiante" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>😃</span><p>Radiante</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1uW2vVUMpAqok16nQQOCMoR4GuZ66k6SH" alt="Momento descontraído" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>😎</span><p>Descontraído</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1LMBJ6pIdCmAmwP6KGHA-6zKEgo2f9rZ7" alt="Aventura pessoal" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🚀</span><p>Aventura</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1QL9rpxfELxgwDdQ4S-WwdSUVNamoPItp" alt="Momento reflexivo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🤔</span><p>Reflexivo</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1iXqiFdZgq3PjcEGovUVTetJAuOd3aVdN" alt="Olhar determinado" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>💪</span><p>Determinado</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1R3ig8HEdNNOIKRfxwG5Y4ABs5snxmGEH" alt="Com os amigos" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>👥</span><p>Amizade</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=19Zvt7is27_1McH9T1mfwvXIjXA5kj8et" alt="Diversão garantida" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🎉</span><p>Diversão</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1F1pidpHOtJGRalT8b8Do_iqW10vUyZex" alt="Momentos únicos" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>⭐</span><p>Único</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1_ueOemRn65D3awpASt1JpXClt4UDYmR6" alt="Companheirismo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🤝</span><p>Companheiro</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1u09-OKWH8OiclwZZaiixUzGk5zJ3e3mS" alt="Lealdade" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>💎</span><p>Leal</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1cx8Gz6rw3DYcRfZViRWxRPz1DaE5xeA9" alt="Aventuras" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🌍</span><p>Aventureiro</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1BdA3ul1y3RvDJIxmQy3SLmyDL1mo4Q4U" alt="Confiança" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🔐</span><p>Confiável</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1ORUrIA52kQ7TlHAu_Ld-vm8FxsKQZug4" alt="Risadas" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>😂</span><p>Alegre</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1iJEjqG-5IjKMj24Bm1NeabMEFLJo--J-" alt="Apoio mútuo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🤗</span><p>Apoio</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=16AvELbFjVftcniGxWHkMcRIsN_uJnSle" alt="Memórias" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>📷</span><p>Memórias</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1G9wnH4F63HccPdEn-fv2-YvWkK1vRgJV" alt="Parceria" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🎯</span><p>Parceiro</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1dcJzW3zUIRK1NXKcdOydiQJYknT05S3O" alt="Irmandade" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>👨‍👦</span><p>Irmão</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1nYPdQ6WaqMuKmqqxSb8OrxX8M1sU4hVw" alt="Com os sobrinhos" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>👶</span><p>Família</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1TWGBzwuWquiC4noC9r3pLoVvnHlveQdZ" alt="Brincando" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🎈</span><p>Brincalhão</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1h3bUMSMz3aRpPmoC9xUngQ7jQruGZ06f" alt="Amor incondicional" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>💝</span><p>Amor</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1gneLYRcPVZbr3YCmu8RiC_m2zPVFz7N1" alt="Miguel sorrindo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>😊</span><p>Miguel</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1hcsWBR_MAAeG8qm_aTABKtx1eiBLbk6F" alt="Miguel brincando" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🎮</span><p>Brincadeira</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=150RH70PdoKYOOG8RXmprLV6PpxP_BqEl" alt="Miguel fofo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>💖</span><p>Fofura</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1b6gs8WUlWybD0g_KPObZeI8bMaT3q9dn" alt="Família reunida" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>👨‍👩‍👧‍👦</span><p>Família</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=13nLeG763NAmVJnl7PDDl6wWRULPVmyup" alt="Momentos especiais" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>💫</span><p>Especial</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1TFfb9k7lKH_ECctijNf17wGqsz-6ixtf" alt="Jogando futebol" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>⚽</span><p>Futebol</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1H6tgpK1hOGfrcnt8B0QWF2W4VgL31fJC" alt="Paixão pelo futebol" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🏆</span><p>Paixão</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1BgBhoxwdLgBIw6eMdbt8mNyBmLaNe8YD" alt="Futebol com amigos" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>👥</span><p>Time</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1JGu4pFaGjbPv0MsvMejnTw2JxcXtxrY4" alt="Momento na igreja" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>⛪</span><p>Fé</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1BZd7-IYFWuBqhEwAqYmCZQnhCi4QAV6y" alt="Comunidade religiosa" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🙏</span><p>Comunidade</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1by4se64mi9KPQN9LGhDyPXUiy_G0TOSF" alt="Vida espiritual" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>✨</span><p>Espiritual</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=14SAbH6aD3ZWk104yrfJ8GThn59Q-DUdy" alt="Meu pet querido" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🐕</span><p>Pet</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1vQ_3yx8DmWRgSmPGKkLSs4QHJ5oHKbhg" alt="Momento carinhoso" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>🐱</span><p>Carinho</p></div>';">
-       </div>
-       <div class="photo-item" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"><img src="https://drive.google.com/uc?export=view&amp;id=1B1EygPASSOptAo4le0pl0x1gzJPh-9DI" alt="Meu pai querido" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-placeholder\'><span>👨</span><p>Pai</p></div>';">
-       </div>
-      </div>
-      <p class="gallery-message">✨ "Cada foto conta uma história, cada momento uma memória especial"</p>
-     </div>
+    <p class="text-center text-gray-600 mt-4 text-sm">← Arraste para ver mais fotos →</p>
+   </div>
+  </section><!-- Header com gradiente -->
+  <header class="gradient-bg text-white py-16">
+   <div class="max-w-6xl mx-auto px-6 text-center">
+    <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-6xl">
+     👨‍🎓
     </div>
-    <div class="section">
-     <h2>🎯 Meus Interesses</h2>
-     <div class="hobbies-list">
-      <div class="hobby-card">
-       <div class="icon">
-        ⚽
-       </div>
-       <h4>Futebol</h4>
-       <p>Sou apaixonado por futebol! Gosto de jogar com os amigos e assistir aos jogos.</p>
-      </div>
-      <div class="hobby-card">
-       <div class="icon">
-        🥊
-       </div>
-       <h4>UFC</h4>
-       <p>Acompanho as lutas do UFC e admiro a dedicação dos lutadores.</p>
-      </div>
-      <div class="hobby-card">
-       <div class="icon">
-        👨‍👩‍👧‍👦
-       </div>
-       <h4>Família</h4>
-       <p>Adoro passar tempo com minha família, especialmente com meus sobrinhos.</p>
-      </div>
-      <div class="hobby-card">
-       <div class="icon">
-        🎮
-       </div>
-       <h4>Games</h4>
-       <p>Nas horas vagas, gosto de jogar videogame para relaxar.</p>
-      </div>
-      <div class="hobby-card">
-       <div class="icon">
-        🚗
-       </div>
-       <h4>Passeios</h4>
-       <p>Gosto de sair para conhecer lugares novos com a Maria Luiza e família.</p>
-      </div>
-      <div class="hobby-card">
-       <div class="icon">
-        ⛪
-       </div>
-       <h4>Fé</h4>
-       <p>Participo da minha comunidade religiosa e encontro força na fé.</p>
-      </div>
-     </div>
+    <h1 id="nome-completo" class="text-4xl md:text-5xl font-bold mb-4">Bruno Gonçalves Oliveira</h1>
+    <p id="idade-escola" class="text-xl mb-2">16 anos • Colégio Estadual Professor Júlio Szymanski</p>
+    <p id="trabalho" class="text-lg opacity-90">Transportadora Nichele</p>
+   </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-6 py-12"><!-- Sobre mim -->
+   <section class="section-card rounded-2xl p-8 mb-12 fade-in">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center"><span class="text-4xl mr-3">🌟</span> Sobre Mim</h2>
+    <p id="descricao-pessoal" class="text-lg text-gray-700 leading-relaxed mb-6">Divido meu dia entre os estudos e o trabalho na Transportadora Nichele, onde aprendo diariamente sobre responsabilidade, disciplina e dedicação — valores que carrego comigo em tudo o que faço. Sou apaixonado por UFC, futebol e, principalmente, pela minha namorada, Maria Luiza Pascuti.</p><!-- Família -->
+    <div class="bg-blue-50 rounded-xl p-6">
+     <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center"><span class="text-3xl mr-3 pulse-heart">❤️</span> Minha Família</h3>
+     <p id="pais" class="text-gray-700 mb-3"><strong>Pais:</strong> Erilda Aparecida e Messias Macedo</p>
+     <p id="irmaos" class="text-gray-700"><strong>Irmãos:</strong> Larissa (26), Ygor (25) e Henrique (23)</p>
+     <p class="text-gray-700 mt-3"><strong>Sobrinhos:</strong> Laura (8), Samuel (6), Gabriel (3) e Miguel (1)</p>
+     <p class="text-gray-700 mt-3"><strong>Afilhado:</strong> Miguel Alencar Keller 👶💙</p>
     </div>
-    <div class="section">
-     <h2>📞 Informações</h2>
-     <div class="info-grid">
-      <div class="info-item">
-       <div class="info-icon">
-        📍
+   </section><!-- Grid de Álbuns de Fotos -->
+   <section class="fade-in">
+    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center flex items-center justify-center"><span class="text-4xl mr-3">📸</span> Meus Momentos Especiais</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Família -->
+     <div class="section-card rounded-2xl p-6 card-hover"><button onclick="showSection('familia')" class="w-full text-left"> <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center hover:text-blue-600 transition-colors"><span class="text-2xl mr-2">👨‍👩‍👧‍👦</span> Família <span class="ml-auto text-blue-500">→</span></h3></button>
+      <div class="photo-placeholder">
+       <div class="text-center text-gray-500">
+        <div class="text-4xl mb-2">
+         📷
+        </div>
+        <p>Adicione fotos da família</p>
        </div>
-       <h3>Localização</h3>
-       <p>Araucária - PR</p>
-       <p><strong>Região Metropolitana de Curitiba</strong></p>
       </div>
-      <div class="info-item">
-       <div class="info-icon">
-        🎓
+     </div><!-- Maria Luiza -->
+     <div class="section-card rounded-2xl p-6 card-hover"><button onclick="showSection('maria-luiza')" class="w-full text-left"> <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center hover:text-pink-600 transition-colors"><span class="text-2xl mr-2 pulse-heart">💕</span> Maria Luiza <span class="ml-auto text-pink-500">→</span></h3></button>
+      <div class="photo-placeholder">
+       <div class="text-center text-gray-500">
+        <div class="text-4xl mb-2">
+         📷
+        </div>
+        <p>Momentos com a Maria Luiza</p>
        </div>
-       <h3>Estudos</h3>
-       <p>16 anos - Estudante</p>
-       <p><strong>Focado no crescimento pessoal</strong></p>
       </div>
-      <div class="info-item">
-       <div class="info-icon">
-        💕
+     </div><!-- Miguel (Afilhado) -->
+     <div class="section-card rounded-2xl p-6 card-hover"><button onclick="showSection('miguel')" class="w-full text-left"> <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center hover:text-blue-600 transition-colors"><span class="text-2xl mr-2">👶</span> Miguel (Afilhado) <span class="ml-auto text-blue-500">→</span></h3></button>
+      <div class="photo-placeholder">
+       <div class="text-center text-gray-500">
+        <div class="text-4xl mb-2">
+         📷
+        </div>
+        <p>Fotos do Miguel</p>
        </div>
-       <h3>Relacionamento</h3>
-       <p>Namorando Maria Luiza</p>
-       <p><strong>Relacionamento sério e feliz</strong></p>
       </div>
-      <div class="info-item">
-       <div class="info-icon">
-        👨‍👩‍👧‍👦
+     </div><!-- Crianças -->
+     <div class="section-card rounded-2xl p-6 card-hover"><button onclick="showSection('criancas')" class="w-full text-left"> <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center hover:text-green-600 transition-colors"><span class="text-2xl mr-2">🧒</span> Crianças <span class="ml-auto text-green-500">→</span></h3></button>
+      <div class="photo-placeholder">
+       <div class="text-center text-gray-500">
+        <div class="text-4xl mb-2">
+         📷
+        </div>
+        <p>Momentos com as crianças</p>
        </div>
-       <h3>Família</h3>
-       <p>4 sobrinhos queridos</p>
-       <p><strong>Laura, Samuel, Gabriel e Miguel</strong></p>
+      </div>
+     </div><!-- Futebol -->
+     <div class="section-card rounded-2xl p-6 card-hover"><button onclick="showSection('futebol')" class="w-full text-left"> <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center hover:text-green-600 transition-colors"><span class="text-2xl mr-2">⚽</span> Futebol <span class="ml-auto text-green-500">→</span></h3></button>
+      <div class="photo-placeholder">
+       <div class="text-center text-gray-500">
+        <div class="text-4xl mb-2">
+         📷
+        </div>
+        <p>Jogos e momentos do futebol</p>
+       </div>
+      </div>
+     </div><!-- Amizades -->
+     <div class="section-card rounded-2xl p-6 card-hover"><button onclick="showSection('amizades')" class="w-full text-left"> <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center hover:text-purple-600 transition-colors"><span class="text-2xl mr-2">👥</span> Amizades <span class="ml-auto text-purple-500">→</span></h3></button>
+      <div class="photo-placeholder">
+       <div class="text-center text-gray-500">
+        <div class="text-4xl mb-2">
+         📷
+        </div>
+        <p>Fotos com os amigos</p>
+       </div>
+      </div>
+     </div><!-- Igreja -->
+     <div class="section-card rounded-2xl p-6 card-hover"><button onclick="showSection('igreja')" class="w-full text-left"> <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center hover:text-yellow-600 transition-colors"><span class="text-2xl mr-2">⛪</span> Igreja <span class="ml-auto text-yellow-500">→</span></h3></button>
+      <div class="photo-placeholder">
+       <div class="text-center text-gray-500">
+        <div class="text-4xl mb-2">
+         📷
+        </div>
+        <p>Momentos na igreja</p>
+       </div>
+      </div>
+     </div><!-- Animais -->
+     <div class="section-card rounded-2xl p-6 card-hover"><button onclick="showSection('animais')" class="w-full text-left"> <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center hover:text-orange-600 transition-colors"><span class="text-2xl mr-2">🐾</span> Animais <span class="ml-auto text-orange-500">→</span></h3></button>
+      <div class="photo-placeholder">
+       <div class="text-center text-gray-500">
+        <div class="text-4xl mb-2">
+         📷
+        </div>
+        <p>Fotos com animais</p>
+       </div>
       </div>
      </div>
     </div>
-   </main>
-  </div>
+   </section><!-- Meus Sonhos -->
+   <section class="section-card rounded-2xl p-8 mt-12 fade-in">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center"><span class="text-4xl mr-3">✨</span> Meus Sonhos</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+     <div class="text-center p-4 bg-blue-50 rounded-xl">
+      <div class="text-3xl mb-2">
+       👶
+      </div>
+      <h3 class="font-semibold text-gray-800">Ser Pai</h3>
+      <p class="text-gray-600 text-sm mt-2">Realizar o sonho de ser pai e educar meus filhos</p>
+     </div>
+     <div class="text-center p-4 bg-green-50 rounded-xl">
+      <div class="text-3xl mb-2">
+       🏠
+      </div>
+      <h3 class="font-semibold text-gray-800">Construir uma Família</h3>
+      <p class="text-gray-600 text-sm mt-2">Formar uma família unida e cheia de amor</p>
+     </div>
+     <div class="text-center p-4 bg-yellow-50 rounded-xl">
+      <div class="text-3xl mb-2">
+       ✨
+      </div>
+      <h3 class="font-semibold text-gray-800">Ver Jesus no Céu</h3>
+      <p class="text-gray-600 text-sm mt-2">Meu maior sonho espiritual e eterno</p>
+     </div>
+    </div>
+   </section>
+  </main><!-- Sub-páginas -->
+  <div id="subpage-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+   <div class="flex items-center justify-center min-h-full p-4">
+    <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+     <div class="p-8">
+      <div class="flex justify-between items-center mb-6">
+       <h2 id="subpage-title" class="text-3xl font-bold text-gray-800"></h2><button onclick="closeSubpage()" class="text-gray-500 hover:text-gray-700 text-2xl">✕</button>
+      </div>
+      <div id="subpage-content" class="space-y-6"><!-- Conteúdo será inserido dinamicamente -->
+      </div><!-- Galeria de fotos -->
+      <div class="mt-8">
+       <h3 class="text-2xl font-semibold text-gray-800 mb-4">📸 Galeria de Fotos</h3>
+       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="photo-placeholder aspect-square">
+         <div class="text-center text-gray-500">
+          <div class="text-3xl mb-2">
+           📷
+          </div>
+          <p class="text-sm">Adicionar foto</p>
+         </div>
+        </div>
+        <div class="photo-placeholder aspect-square">
+         <div class="text-center text-gray-500">
+          <div class="text-3xl mb-2">
+           📷
+          </div>
+          <p class="text-sm">Adicionar foto</p>
+         </div>
+        </div>
+        <div class="photo-placeholder aspect-square">
+         <div class="text-center text-gray-500">
+          <div class="text-3xl mb-2">
+           📷
+          </div>
+          <p class="text-sm">Adicionar foto</p>
+         </div>
+        </div>
+        <div class="photo-placeholder aspect-square">
+         <div class="text-center text-gray-500">
+          <div class="text-3xl mb-2">
+           📷
+          </div>
+          <p class="text-sm">Adicionar foto</p>
+         </div>
+        </div>
+        <div class="photo-placeholder aspect-square">
+         <div class="text-center text-gray-500">
+          <div class="text-3xl mb-2">
+           📷
+          </div>
+          <p class="text-sm">Adicionar foto</p>
+         </div>
+        </div>
+        <div class="photo-placeholder aspect-square">
+         <div class="text-center text-gray-500">
+          <div class="text-3xl mb-2">
+           📷
+          </div>
+          <p class="text-sm">Adicionar foto</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div><!-- Footer -->
+  <footer class="gradient-bg text-white py-8 mt-16">
+   <div class="max-w-6xl mx-auto px-6 text-center">
+    <p class="text-lg mb-2">Bruno Gonçalves Oliveira</p>
+    <p class="opacity-80">"Foi o tempo que dedicaste à tua rosa que a fez tão importante." ❤️</p>
+   </div>
+  </footer>
   <script>
-        // Initialize Element SDK
+        // Configuração padrão
         const defaultConfig = {
-            background_color: "#667eea",
-            surface_color: "#ffffff", 
-            text_color: "#333333",
-            primary_action_color: "#667eea",
-            secondary_action_color: "#764ba2",
-            font_family: "Segoe UI",
-            font_size: 16,
-            page_title: "Bruno Gonçalves - Página Pessoal",
-            main_heading: "Bruno Gonçalves",
-            profile_subtitle: "🎓 16 anos | 💼 Estudante | 📍 Araucária, PR",
-            profile_description: "💕 Namorando Maria Luiza | 👨‍👩‍👧‍👦 Família de 4 sobrinhos"
+            nome_completo: "Bruno Gonçalves Oliveira",
+            idade: "16 anos • Colégio Estadual Professor Júlio Szymanski",
+            trabalho: "Transportadora Nichele",
+            descricao_pessoal: "Divido meu dia entre os estudos e o trabalho na Transportadora Nichele, onde aprendo diariamente sobre responsabilidade, disciplina e dedicação — valores que carrego comigo em tudo o que faço. Sou apaixonado por UFC, futebol e, principalmente, pela minha namorada, Maria Luiza Pascuti.",
+            pais: "Erilda Aparecida e Messias Macedo",
+            irmaos: "Larissa (26), Ygor (25) e Henrique (23)",
+            background_color: "#1e3a8a",
+            surface_color: "#ffffff",
+            text_color: "#1f2937",
+            primary_action_color: "#3b82f6",
+            secondary_action_color: "#6b7280"
         };
 
+        // Animação de entrada para elementos
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observar todos os cards
+        document.querySelectorAll('.card-hover, .section-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Conteúdo das sub-páginas
+        const subpageContent = {
+            'familia': {
+                title: '👨‍👩‍👧‍👦 Minha Família',
+                content: `
+                    <div class="bg-blue-50 rounded-xl p-6 mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">❤️ A Base de Tudo</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Minha família é a base da minha vida e os responsáveis pelos princípios que me guiam desde pequeno. 
+                            Venho de uma família grande, acolhedora e cheia de amor. Cada um tem um papel especial na minha formação.
+                        </p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-xl p-6 border border-gray-200">
+                            <h4 class="font-semibold text-gray-800 mb-3">👨‍👩 Meus Pais</h4>
+                            <p class="text-gray-700">Erilda Aparecida e Messias Macedo são exemplos de dedicação e amor. 
+                            Eles me ensinaram os valores de responsabilidade e trabalho.</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 border border-gray-200">
+                            <h4 class="font-semibold text-gray-800 mb-3">👫 Meus Irmãos</h4>
+                            <p class="text-gray-700">Larissa (26), Ygor (25) e Henrique (23). Cada um com sua personalidade única, 
+                            mas todos unidos pelo amor familiar.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 rounded-xl p-6 mt-6">
+                        <h4 class="font-semibold text-gray-800 mb-3">👶 Meus Sobrinhos</h4>
+                        <p class="text-gray-700">Laura (8), Samuel (6), Gabriel (3) e Miguel (1) enchem nossa casa de alegria e risadas. 
+                        Ser tio é uma das melhores experiências da minha vida!</p>
+                    </div>
+                `
+            },
+            'maria-luiza': {
+                title: '💕 Maria Luiza',
+                content: `
+                    <div class="bg-pink-50 rounded-xl p-6 mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4 pulse-heart">💖 Minha Namorada</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Maria Luiza Pascuti faz parte da minha caminhada e do meu crescimento pessoal. 
+                            Ela é uma das pessoas mais importantes da minha vida e me inspira a ser uma pessoa melhor a cada dia.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 border border-pink-200">
+                        <h4 class="font-semibold text-gray-800 mb-3">🌟 Nossa História</h4>
+                        <p class="text-gray-700">
+                            Juntos, construímos momentos especiais e compartilhamos sonhos. Ela me apoia em tudo 
+                            e é minha companheira nas alegrias e desafios da vida.
+                        </p>
+                    </div>
+                `
+            },
+            'miguel': {
+                title: '👶 Miguel - Meu Afilhado',
+                content: `
+                    <div class="bg-blue-50 rounded-xl p-6 mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">💙 Miguel Alencar Keller</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Sou padrinho do Miguel Alencar Keller, um piazinho de olhos azuis e uma das risadas mais lindas que já ouvi. 
+                            Ser padrinho é uma responsabilidade e alegria imensa!
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 border border-blue-200">
+                        <h4 class="font-semibold text-gray-800 mb-3">🎈 Momentos Especiais</h4>
+                        <p class="text-gray-700">
+                            Cada sorriso, cada descoberta, cada momento com o Miguel é único. 
+                            Acompanhar seu crescimento e desenvolvimento é uma das maiores alegrias da minha vida.
+                        </p>
+                    </div>
+                `
+            },
+            'criancas': {
+                title: '🧒 As Crianças da Família',
+                content: `
+                    <div class="bg-yellow-50 rounded-xl p-6 mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">🌈 Alegria em Casa</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Amo crianças e tudo o que traz leveza e bondade para a vida. 
+                            As crianças da nossa família enchem nossos dias de risadas, brincadeiras e muito amor.
+                        </p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white rounded-xl p-4 border border-gray-200">
+                            <h4 class="font-semibold text-gray-800">Laura (8 anos)</h4>
+                            <p class="text-gray-600 text-sm">A mais velha, sempre cuidando dos menores</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-4 border border-gray-200">
+                            <h4 class="font-semibold text-gray-800">Samuel (6 anos)</h4>
+                            <p class="text-gray-600 text-sm">Cheio de energia e curiosidade</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-4 border border-gray-200">
+                            <h4 class="font-semibold text-gray-800">Gabriel (3 anos)</h4>
+                            <p class="text-gray-600 text-sm">O arteiro da família</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-4 border border-gray-200">
+                            <h4 class="font-semibold text-gray-800">Miguel (1 ano)</h4>
+                            <p class="text-gray-600 text-sm">O bebê que derrete nossos corações</p>
+                        </div>
+                    </div>
+                `
+            },
+            'futebol': {
+                title: '⚽ Futebol - Minha Paixão',
+                content: `
+                    <div class="bg-green-50 rounded-xl p-6 mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">🏆 Amor pelo Esporte</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            O futebol é uma das minhas grandes paixões! Seja jogando com os amigos, 
+                            assistindo aos jogos ou acompanhando meu time do coração, o futebol sempre faz parte da minha vida.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 border border-green-200">
+                        <h4 class="font-semibold text-gray-800 mb-3">⚽ Momentos no Campo</h4>
+                        <p class="text-gray-700">
+                            Adoro jogar bola com os amigos nos finais de semana. É um momento de descontração, 
+                            diversão e também de exercitar o corpo e a mente.
+                        </p>
+                    </div>
+                `
+            },
+            'amizades': {
+                title: '👥 Minhas Amizades',
+                content: `
+                    <div class="bg-purple-50 rounded-xl p-6 mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">🤝 Amigos Verdadeiros</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Tenho a sorte de ter amigos incríveis que fazem parte da minha jornada. 
+                            São pessoas que me apoiam, me fazem rir e tornam a vida muito mais especial.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 border border-purple-200">
+                        <h4 class="font-semibold text-gray-800 mb-3">🎉 Momentos Juntos</h4>
+                        <p class="text-gray-700">
+                            Seja nos estudos, no trabalho ou nos momentos de lazer, meus amigos sempre estão presentes. 
+                            Valorizamos nossa amizade e criamos memórias que levaremos para sempre.
+                        </p>
+                    </div>
+                `
+            },
+            'igreja': {
+                title: '⛪ Minha Fé',
+                content: `
+                    <div class="bg-yellow-50 rounded-xl p-6 mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">🙏 Vida Espiritual</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            A igreja é um lugar importante na minha vida, onde encontro paz, orientação e comunhão. 
+                            Minha fé me fortalece e me guia nas decisões do dia a dia.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 border border-yellow-200">
+                        <h4 class="font-semibold text-gray-800 mb-3">✨ Momentos de Reflexão</h4>
+                        <p class="text-gray-700">
+                            Participar dos cultos, atividades e momentos de oração me trazem serenidade 
+                            e me ajudam a manter os valores que aprendi em família.
+                        </p>
+                    </div>
+                `
+            },
+            'animais': {
+                title: '🐾 Amor pelos Animais',
+                content: `
+                    <div class="bg-orange-50 rounded-xl p-6 mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">🐕 Companheiros Especiais</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Amo animais e tudo o que traz leveza e bondade para a vida. 
+                            Os animais nos ensinam sobre amor incondicional, lealdade e simplicidade.
+                        </p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 border border-orange-200">
+                        <h4 class="font-semibold text-gray-800 mb-3">💝 Momentos de Carinho</h4>
+                        <p class="text-gray-700">
+                            Seja brincando, cuidando ou simplesmente observando os animais, 
+                            sempre me sinto conectado com a natureza e com o que há de mais puro no mundo.
+                        </p>
+                    </div>
+                `
+            }
+        };
+
+        // Função para mostrar sub-página
+        function showSection(sectionId) {
+            const content = subpageContent[sectionId];
+            if (content) {
+                document.getElementById('subpage-title').innerHTML = content.title;
+                document.getElementById('subpage-content').innerHTML = content.content;
+                document.getElementById('subpage-overlay').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Função para fechar sub-página
+        function closeSubpage() {
+            document.getElementById('subpage-overlay').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fechar ao clicar no overlay
+        document.getElementById('subpage-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSubpage();
+            }
+        });
+
+        // Função para navegar no carrossel de fotos
+        function scrollCarousel(direction) {
+            const carousel = document.getElementById('photo-carousel');
+            const scrollAmount = 200; // pixels para rolar
+            
+            if (direction === 'left') {
+                carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        // Tornar funções globais
+        window.showSection = showSection;
+        window.closeSubpage = closeSubpage;
+        window.scrollCarousel = scrollCarousel;
+
+        // Implementação do Element SDK
         async function onConfigChange(config) {
-            // Update page title
-            document.title = config.page_title || defaultConfig.page_title;
-            
-            // Update main heading
-            const mainHeading = document.querySelector('.profile-info h1');
-            if (mainHeading) {
-                mainHeading.textContent = config.main_heading || defaultConfig.main_heading;
-            }
-            
-            // Update profile subtitle
-            const profileSubtitle = document.querySelector('.profile-info p:first-of-type');
-            if (profileSubtitle) {
-                profileSubtitle.textContent = config.profile_subtitle || defaultConfig.profile_subtitle;
-            }
-            
-            // Update profile description
-            const profileDescription = document.querySelector('.profile-info p:last-of-type');
-            if (profileDescription) {
-                profileDescription.textContent = config.profile_description || defaultConfig.profile_description;
-            }
-            
-            // Update colors
-            const backgroundColor = config.background_color || defaultConfig.background_color;
+            // Atualizar textos
+            document.getElementById('nome-completo').textContent = config.nome_completo || defaultConfig.nome_completo;
+            document.getElementById('idade-escola').textContent = config.idade || defaultConfig.idade;
+            document.getElementById('trabalho').textContent = config.trabalho || defaultConfig.trabalho;
+            document.getElementById('descricao-pessoal').textContent = config.descricao_pessoal || defaultConfig.descricao_pessoal;
+            document.getElementById('pais').innerHTML = `<strong>Pais:</strong> ${config.pais || defaultConfig.pais}`;
+            document.getElementById('irmaos').innerHTML = `<strong>Irmãos:</strong> ${config.irmaos || defaultConfig.irmaos}`;
+
+            // Atualizar cores
+            const bgColor = config.background_color || defaultConfig.background_color;
             const surfaceColor = config.surface_color || defaultConfig.surface_color;
             const textColor = config.text_color || defaultConfig.text_color;
             const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
-            const secondaryActionColor = config.secondary_action_color || defaultConfig.secondary_action_color;
-            
-            document.body.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${secondaryActionColor} 100%)`;
-            
-            // Update surface colors
-            const surfaces = document.querySelectorAll('.content, .hobby-card');
-            surfaces.forEach(surface => {
-                surface.style.backgroundColor = surfaceColor;
+
+            // Aplicar gradiente de fundo
+            document.querySelectorAll('.gradient-bg').forEach(element => {
+                element.style.background = `linear-gradient(135deg, ${bgColor} 0%, #3b82f6 50%, #60a5fa 100%)`;
             });
-            
-            // Update text colors
-            const textElements = document.querySelectorAll('h2, h3, h4, p, li');
-            textElements.forEach(element => {
-                if (!element.closest('.info-item') && !element.style.color) {
-                    element.style.color = textColor;
+
+            // Aplicar cores de superfície
+            document.querySelectorAll('.section-card').forEach(card => {
+                card.style.backgroundColor = surfaceColor;
+            });
+
+            // Aplicar cores de texto
+            document.querySelectorAll('h1, h2, h3').forEach(heading => {
+                if (!heading.closest('.gradient-bg')) {
+                    heading.style.color = textColor;
                 }
-            });
-            
-            // Update primary action colors
-            const primaryElements = document.querySelectorAll('.section h2, .gallery h3, .hobby-card h4');
-            primaryElements.forEach(element => {
-                element.style.color = primaryActionColor;
-            });
-            
-            // Update font
-            const customFont = config.font_family || defaultConfig.font_family;
-            const baseFontStack = 'Tahoma, Geneva, Verdana, sans-serif';
-            document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
-            
-            // Update font sizes
-            const baseSize = config.font_size || defaultConfig.font_size;
-            const mainTitle = document.querySelector('.profile-info h1');
-            if (mainTitle) {
-                mainTitle.style.fontSize = `${baseSize * 1.875}px`; // 3rem equivalent
-            }
-            
-            const subtitles = document.querySelectorAll('h2');
-            subtitles.forEach(subtitle => {
-                subtitle.style.fontSize = `${baseSize * 1.25}px`;
-            });
-            
-            const h3Elements = document.querySelectorAll('h3');
-            h3Elements.forEach(h3 => {
-                h3.style.fontSize = `${baseSize * 1.125}px`;
-            });
-            
-            const bodyText = document.querySelectorAll('p, li');
-            bodyText.forEach(text => {
-                text.style.fontSize = `${baseSize}px`;
             });
         }
 
@@ -546,46 +673,27 @@
                                 window.elementSdk.setConfig({ primary_action_color: value });
                             }
                         }
-                    },
-                    {
-                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
-                        set: (value) => {
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ secondary_action_color: value });
-                            }
-                        }
                     }
                 ],
                 borderables: [],
-                fontEditable: {
-                    get: () => config.font_family || defaultConfig.font_family,
-                    set: (value) => {
-                        if (window.elementSdk) {
-                            window.elementSdk.setConfig({ font_family: value });
-                        }
-                    }
-                },
-                fontSizeable: {
-                    get: () => config.font_size || defaultConfig.font_size,
-                    set: (value) => {
-                        if (window.elementSdk) {
-                            window.elementSdk.setConfig({ font_size: value });
-                        }
-                    }
-                }
+                fontEditable: undefined,
+                fontSizeable: undefined
             };
         }
 
         function mapToEditPanelValues(config) {
             return new Map([
-                ["page_title", config.page_title || defaultConfig.page_title],
-                ["main_heading", config.main_heading || defaultConfig.main_heading],
-                ["profile_subtitle", config.profile_subtitle || defaultConfig.profile_subtitle],
-                ["profile_description", config.profile_description || defaultConfig.profile_description]
+                ["nome_completo", config.nome_completo || defaultConfig.nome_completo],
+                ["idade", config.idade || defaultConfig.idade],
+                ["escola", config.escola || "Colégio Estadual Professor Júlio Szymanski"],
+                ["trabalho", config.trabalho || defaultConfig.trabalho],
+                ["descricao_pessoal", config.descricao_pessoal || defaultConfig.descricao_pessoal],
+                ["pais", config.pais || defaultConfig.pais],
+                ["irmaos", config.irmaos || defaultConfig.irmaos]
             ]);
         }
 
-        // Initialize SDK when available
+        // Inicializar Element SDK
         if (window.elementSdk) {
             window.elementSdk.init({
                 defaultConfig,
@@ -595,5 +703,5 @@
             });
         }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99eae869e1d1f17f',t:'MTc2MzE2OTQzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99eb0f9a46ae6b21',t:'MTc2MzE3MTA0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
